@@ -12,7 +12,7 @@ if test -z "$KOSH_SYNC_ORIGIN"; then
 fi
 
 while true; do
-  echo -n "$(date +"%Y-%m-%d %H:%M:%S") [sync] "
+  echo -n "$(date +"%Y-%m-%d %H:%M:%S") [SYNC] "
   git -C "$KOSH_SYNC_FOLDER" pull "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_BRANCH" 2>&1 \
     | tail -n+3
 
