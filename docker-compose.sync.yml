@@ -1,0 +1,13 @@
+version: '2.3'
+services:
+ sync:
+    image: cceh/kosh_sync:latest
+    networks: ['network']
+    volumes: ['../kosh_data:/var/lib/kosh']
+    depends_on:
+      kosh:
+        condition: service_healthy
+    environment:
+      KOSH_SYNC_BRANCH: master
+      KOSH_SYNC_ORIGIN: https://github.com/cceh/kosh_data
+      KOSH_SYNC_REPOSE: 1h
