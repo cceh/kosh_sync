@@ -1,7 +1,7 @@
 version: '2.3'
 services:
  sync:
-    image: cceh/kosh_sync:latest
+    build: ../kosh_sync
     networks: ['network']
     volumes: ['../kosh_data:/var/lib/kosh']
     depends_on:
