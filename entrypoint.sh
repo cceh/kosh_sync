@@ -20,7 +20,7 @@ fi
 while true; do
   echo -n "$(date +"%Y-%m-%d %H:%M:%S") [SYNC] "
   git -C "$KOSH_SYNC_FOLDER" pull "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_BRANCH" \
-    2>&1 | tail -n+3
+    2>&1 | head -n1
 
   sleep $KOSH_SYNC_REPOSE
 done
