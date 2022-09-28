@@ -13,14 +13,14 @@ fi
 
 if test ! -d "$KOSH_SYNC_FOLDER/.git"; then
   echo -n "$(date +"%Y-%m-%d %H:%M:%S") [INIT] "
-  git clone -b "$KOSH_SYNC_BRANCH" "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_FOLDER" \
-     2>&1 | head -n1
+  git clone -qb "$KOSH_SYNC_BRANCH" "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_FOLDER"
+  echo "Hash: $(git -C "$KOSH_SYNC_FOLDER" rev-parse $KOSH_SYNC_BRANCH)"
 fi
 
 while true; do
   echo -n "$(date +"%Y-%m-%d %H:%M:%S") [SYNC] "
-  git -C "$KOSH_SYNC_FOLDER" pull "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_BRANCH" \
-    2>&1 | head -n1
+  git -C "$KOSH_SYNC_FOLDER" pull -q "$KOSH_SYNC_ORIGIN" "$KOSH_SYNC_BRANCH"
+  echo "Hash: $(git -C "$KOSH_SYNC_FOLDER" rev-parse $KOSH_SYNC_BRANCH)"
 
   sleep $KOSH_SYNC_REPOSE
 done
